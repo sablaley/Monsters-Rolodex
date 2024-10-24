@@ -4,17 +4,20 @@ import SearchBox from "./components/search-box/searchBox.component";
 import './App.css'
 import { getData } from "./utils/data.utils";
 
+// Declare the Monster type outside the component
+export type Monster = {
+  id: string;
+  name: string;
+  email: string;
+};
+
+
 const App = () => {
   const [monsters, setMonsters] = useState<Monster[]>([])
   const [searchString, setSearchString] = useState('')
   const [filteredMonsters, setFilterMonsters] = useState(monsters);
 
-  type Monster = {
-    id: string;
-    name: string;
-    email: string;
-  }
-
+  
   useEffect(() => {
     const fetchUsers = async () => {
       const users = await getData<Monster[]>('https://jsonplaceholder.typicode.com/users')
